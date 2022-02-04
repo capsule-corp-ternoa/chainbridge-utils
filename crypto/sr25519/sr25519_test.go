@@ -7,12 +7,11 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/centrifuge/go-substrate-rpc-client/signature"
+	"github.com/centrifuge/go-substrate-rpc-client/v4/signature"
 )
 
 func TestNewKeypairFromSeed(t *testing.T) {
-	// @dev can leave second arguemnt (network) empty if using default, substrate
-	kp, err := NewKeypairFromSeed("//Alice", "")
+	kp, err := NewKeypairFromSeed("//Alice", 42)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -23,7 +22,7 @@ func TestNewKeypairFromSeed(t *testing.T) {
 }
 
 func TestKeypair_AsKeyringPair(t *testing.T) {
-	kp, err := NewKeypairFromSeed("//Alice", "substrate")
+	kp, err := NewKeypairFromSeed("//Alice", 42)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -39,7 +38,7 @@ func TestKeypair_AsKeyringPair(t *testing.T) {
 }
 
 func TestEncodeAndDecodeKeypair(t *testing.T) {
-	kp, err := NewKeypairFromSeed("//Alice", "substrate")
+	kp, err := NewKeypairFromSeed("//Alice", 42)
 	if err != nil {
 		t.Fatal(err)
 	}
